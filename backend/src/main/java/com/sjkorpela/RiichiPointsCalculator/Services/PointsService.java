@@ -2,8 +2,10 @@ package com.sjkorpela.RiichiPointsCalculator.Services;
 
 import com.sjkorpela.RiichiPointsCalculator.Entities.PointsRequest;
 import com.sjkorpela.RiichiPointsCalculator.Entities.PossibleHand;
+import com.sjkorpela.RiichiPointsCalculator.Entities.ResponseYaku;
 import com.sjkorpela.RiichiPointsCalculator.Entities.Triplet;
 import com.sjkorpela.RiichiPointsCalculator.Enums.*;
+import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
@@ -54,7 +56,6 @@ public class PointsService {
 
         if (!request.getYakumanAchieved() ||!request.getOpenHand()) {
             YakuService.checkForRiichiAndTsumo(request);
-            YakuService.checkForPinfu(request); //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         }
         boolean tsumo = request.getYaku().contains(Yaku.Tsumo);
 
@@ -71,6 +72,8 @@ public class PointsService {
             if (request.getPossibleHands().isEmpty()) {
                 throw new IllegalArgumentException("Hand isn't valid! Not Seven Pairs, Thirteen Orphans, or a valid collection of four sets and one pair.");
             }
+            HandService.countFu(request);
+            YakuService.checkForPinfu(request);
         }
 
         if (fullFlush && hasSequences) { YakuService.checkForNineGates(request); } // possible Yakuman
@@ -110,57 +113,22 @@ public class PointsService {
 
         YakuService.checkForConcealedTriplets(request);
 
+        for (PossibleHand hand : request.getPossibleHands()) {
+            System.out.println(hand);
+        }
+
+        // Apply best hand
+        List<PossibleHand> hands = request.getPossibleHands();
+        if (hands.size() == 1) {
+            request.getResponseYaku().addAll(hands.getFirst().getYaku());
+        } else {
+            PossibleHand bestHand = HandService.getPossibleHand(hands);
+
+            request.getResponseYaku().addAll(bestHand.getYaku());
+        }
+
         YakuService.checkForDora(request);
     }
 
-    public static void countFu(PointsRequest request) {
 
-        for (PossibleHand hand : request.getPossibleHands()) {
-
-
-            // All hands start with 20 Fu
-            int fu = 20;
-
-            // Basically, a triplet gives +2 Fu, double if it's a terminal/honor, and half if it's open
-            // And a kan gives +4 Fu, with the same rules
-            // Sequences give no Fu
-            List<Triplet> triplets = hand.getTriplets();
-            for (Triplet triplet : triplets) {
-                Tile tile = triplet.getTile();
-                int tempFu = 2;
-
-                if (tile.getType() != Type.Simple) {
-                    tempFu *= 2;
-                }
-
-                // nts: if set is open, half the fu !!!!!
-
-                fu += tempFu;
-            }
-
-            // Open Wait (+0 Fu) is a non-terminal sequence waiting for tiles at its ends, ex.: 34 waiting for 2 or 5
-            // Dual Pair Wait (+0 Fu) is two pairs waiting to make one into a triplet, ex,: 2288 waiting for 2 or 8
-            // Closed Wait (+2 Fu) is a sequence waiting for its middle tile, ex: 68 waiting for 7
-            // Edge Wait (+2 Fu) is a terminal sequence waiting for the third tile from the edge, ex: 12 waiting for 3
-            // Pair Wait (+2 Fu) is a lone tile waiting for its pair, ex.: 9 waiting for 9
-
-            // If the hands pair is Yakuhai, +2 Fu
-            Tile pairTile = hand.getPair().getTile();
-            if (pairTile.getSuit() == Suit.Dragon) { fu += 2; }
-            if (pairTile.getSuit() == Suit.Wind) {
-                Wind wind = pairTile.toWind();
-                if (wind == request.getRoundWind()) { fu += 2; }
-                if (wind == request.getSeatWind()) {fu += 2; }
-            }
-
-            // Closed hand Ron is +10 Fu, but does not interrupt Pinfu
-            // Tsumo is +2 Fu, but does not interrupt Pinfu
-
-            // Fu is always rounded up to the nearest 10, except for 7P
-        }
-    }
-
-    public static void requestToResponse(PointsRequest request) {
-
-    }
 }

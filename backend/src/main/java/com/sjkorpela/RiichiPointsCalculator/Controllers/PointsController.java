@@ -21,7 +21,6 @@ public class PointsController {
             request.initializeOtherFields();
             PointsService.getYaku(request);
             PointsResponse response = new PointsResponse(request);
-            System.out.println(response.getYaku());
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return ResponseEntity

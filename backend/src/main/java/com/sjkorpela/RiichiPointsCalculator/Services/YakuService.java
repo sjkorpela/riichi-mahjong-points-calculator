@@ -636,9 +636,19 @@ public class YakuService {
         }
 
         if (hasHonors) {
-            hand.getYaku().add(Yaku.HalfOutsideHand);
+//            hand.getYaku().add(Yaku.HalfOutsideHand);
+            hand.getYaku().add(new ResponseYaku(
+                    Yaku.HalfOutsideHand,
+                    new ArrayList<>(),
+                    hand.isOpenHand()
+            ));
         } else {
-            hand.getYaku().add(Yaku.FullyOutsideHand);
+//            hand.getYaku().add(Yaku.FullyOutsideHand);
+            hand.getYaku().add(new ResponseYaku(
+                    Yaku.FullyOutsideHand,
+                    new ArrayList<>(),
+                    hand.isOpenHand()
+            ));
         }
     }
 
@@ -671,7 +681,12 @@ public class YakuService {
             }
 
             if (oneTwoThree && fourFiveSix && sevenEightNine) {
-                hand.getYaku().add(Yaku.PureStraight);
+//                hand.getYaku().add(Yaku.PureStraight);
+                hand.getYaku().add(new ResponseYaku(
+                        Yaku.PureStraight,
+                        new ArrayList<>(),
+                        hand.isOpenHand()
+                ));
                 return;
             }
         }
@@ -692,9 +707,19 @@ public class YakuService {
         }
 
         if (pureDoubleSequenceAmount == 1) {
-            hand.getYaku().add(Yaku.PureDoubleSequence);
+//            hand.getYaku().add(Yaku.PureDoubleSequence);
+            hand.getYaku().add(new ResponseYaku(
+                    Yaku.PureDoubleSequence,
+                    new ArrayList<>(),
+                    hand.isOpenHand()
+            ));
         } else if (pureDoubleSequenceAmount == 2) {
-            hand.getYaku().add(Yaku.TwicePureDoubleSequence);
+//            hand.getYaku().add(Yaku.TwicePureDoubleSequence);
+            hand.getYaku().add(new ResponseYaku(
+                    Yaku.TwicePureDoubleSequence,
+                    new ArrayList<>(),
+                    hand.isOpenHand()
+            ));
         }
     }
 
@@ -718,7 +743,12 @@ public class YakuService {
                 int amount = entry.getValue();
 
                 if (amount >= 3) {
-                    hand.getYaku().add(Yaku.TripleTriplets);
+//                    hand.getYaku().add(Yaku.TripleTriplets);
+                    hand.getYaku().add(new ResponseYaku(
+                            Yaku.TripleTriplets,
+                            new ArrayList<>(),
+                            hand.isOpenHand()
+                    ));
                     tripleTriplets = true;
                 }
             }
@@ -736,7 +766,12 @@ public class YakuService {
                 int amount = entry.getValue();
 
                 if (amount >= 3) {
-                    hand.getYaku().add(Yaku.MixedTripleSequence);
+//                    hand.getYaku().add(Yaku.MixedTripleSequence);
+                    hand.getYaku().add(new ResponseYaku(
+                            Yaku.MixedTripleSequence,
+                            new ArrayList<>(),
+                            hand.isOpenHand()
+                    ));
                 }
             }
         }
@@ -763,9 +798,19 @@ public class YakuService {
             }
             // DOES NOT ACCOUNT FOR SINGLE WAIT FOUR CONCEALED TRIPLETS
             if (concealedTriplets == 4) {
-                hand.getYaku().add(Yaku.FourConcealedTriplets);
+//                hand.getYaku().add(Yaku.FourConcealedTriplets);
+                hand.getYaku().add(new ResponseYaku(
+                        Yaku.FourConcealedTriplets,
+                        new ArrayList<>(),
+                        hand.isOpenHand()
+                ));
             } else if (concealedTriplets == 3) {
-                hand.getYaku().add(Yaku.ThreeConcealedTriplets);
+//                hand.getYaku().add(Yaku.ThreeConcealedTriplets);
+                hand.getYaku().add(new ResponseYaku(
+                        Yaku.ThreeConcealedTriplets,
+                        new ArrayList<>(),
+                        hand.isOpenHand()
+                ));
             }
         }
     }

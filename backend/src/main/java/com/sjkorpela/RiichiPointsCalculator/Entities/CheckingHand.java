@@ -15,13 +15,16 @@ public class CheckingHand {
     private List<Triplet> triplets;
     private List<Sequence> sequences;
     private Pair pair = null;
+    private Integer fu = null;
+    private boolean openHand;
     private boolean ready = false;
 
-    public CheckingHand(List<Tile> tiles) {
+    public CheckingHand(List<Tile> tiles, boolean openHand) {
         this.tiles = tiles;
         this.spentTiles = new ArrayList<Integer>();
         this.triplets = new ArrayList<Triplet>();
         this.sequences = new ArrayList<Sequence>();
+        this.openHand = openHand;
     }
 
     public CheckingHand(CheckingHand old) {
@@ -38,6 +41,7 @@ public class CheckingHand {
         this.triplets = new ArrayList<Triplet>(old.triplets);
         this.sequences = new ArrayList<Sequence>(old.sequences);
         this.pair = old.pair;
+        this.openHand = old.openHand;
         this.ready = old.ready;
     }
 
@@ -47,7 +51,6 @@ public class CheckingHand {
                 return i;
             }
         }
-
         return null;
     }
 
