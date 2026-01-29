@@ -390,7 +390,16 @@ public class YakuService {
     }
 
     public static void checkForPinfu(PointsRequest request) {
-        // nts: implement...
+        for (PossibleHand hand : request.getPossibleHands()) {
+            int winFu = request.getTsumo() ? 2 : 10;
+            if (hand.getFu() - winFu == 20) {
+                hand.getYaku().add(new ResponseYaku(
+                        Yaku.Pinfu,
+                        new ArrayList<Tile>(),
+                        request.getOpenHand()
+                ));
+            }
+        }
     }
 
     /**

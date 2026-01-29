@@ -22,12 +22,14 @@ public class PointsResponse {
         List<Yaku> allYakuman = Yaku.getYakuman();
 
         for (Yaku yaku : request.getYaku()) {
+//            System.out.println("Yaku: " + yaku);
             if (!this.yakuman || allYakuman.contains(yaku)) {
                 this.yaku.add(JsonService.getYakuDetails(yaku, request.getOpenHand()));
             }
         }
 
         for (ResponseYaku yaku : request.getResponseYaku()) {
+//            System.out.println("ResponseYaku: " + yaku);
             if (!this.yakuman || allYakuman.contains(yaku.getYaku())) {
                 this.yaku.add(yaku);
             }

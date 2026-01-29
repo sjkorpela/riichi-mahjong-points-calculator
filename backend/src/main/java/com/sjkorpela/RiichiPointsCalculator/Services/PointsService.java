@@ -113,9 +113,9 @@ public class PointsService {
 
         YakuService.checkForConcealedTriplets(request);
 
-        for (PossibleHand hand : request.getPossibleHands()) {
-            System.out.println(hand);
-        }
+//        for (PossibleHand hand : request.getPossibleHands()) {
+//            System.out.println(hand);
+//        }
 
         // Apply best hand
         List<PossibleHand> hands = request.getPossibleHands();
