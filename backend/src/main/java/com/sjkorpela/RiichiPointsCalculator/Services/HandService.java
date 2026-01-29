@@ -142,6 +142,7 @@ public class HandService {
             fu += request.getTsumo() ? 2 : 10;
 
             // Fu is always rounded up to the nearest 10, except for 7P
+            // It's rounded later to help with not counting Ron7Tsumo Fu
 
             hand.setFu(fu);
         }

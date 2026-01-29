@@ -589,7 +589,7 @@ public class YakuService {
                         break;
                 }
             } else if (honorSuit == Suit.Wind && honorAmount == 3) {
-                if (honor.isWind(roundWind)) {
+                if (honor.equalsWind(roundWind)) {
 //                    request.getYaku().add(Yaku.PrevalentWind);
                     request.getResponseYaku().add(new ResponseYaku(
                             Yaku.PrevalentWind,
@@ -597,7 +597,7 @@ public class YakuService {
                             request.getOpenHand()
                     ));
                 }
-                if (honor.isWind(seatWind)) {
+                if (honor.equalsWind(seatWind)) {
 //                    request.getYaku().add(Yaku.SeatWind);
                     request.getResponseYaku().add(new ResponseYaku(
                             Yaku.SeatWind,
