@@ -8,12 +8,14 @@ import java.util.List;
  * Enum values of all Riichi Mahjong Tiles.
  * <p>
  * The tiles have relevant attributes as getters:
- * - Tile value with getValue() as int, 1-9 for numbered tiles, 0-3 for wind tiles, and 0-2 for dragon tiles.
- * - Tile suit with getSuit() as {@link com.sjkorpela.RiichiPointsCalculator.Enums.Suit}
- * - Tile type with getType() as {@link com.sjkorpela.RiichiPointsCalculator.Enums.Type}
- * - If the tile is a Red Dora with getRed() as boolean
- * - A more readable name with getReadableName(), ex. s1 -> Sou 1, or we -> Wind East
- *
+ * <ul>
+ * <li> Tile value with getValue() as int, 1-9 for numbered tiles, 0-3 for wind tiles, and 0-2 for dragon tiles</li>
+ * <li>Tile suit with getSuit() as {@link com.sjkorpela.RiichiPointsCalculator.Enums.Suit}</li>
+ * <li>Tile type with getType() as {@link com.sjkorpela.RiichiPointsCalculator.Enums.Type}</li>
+ * <li>If the tile is a Red Dora with getRed() as boolean</li>
+ * <li>A more readable name with getReadableName(), ex. s1 -> Sou 1, or we -> Wind East</li>
+ * </ul>
+ * <p>
  * @author Santeri Korpela
  */
 @Getter
@@ -126,6 +128,14 @@ public enum Tile {
         return Arrays.stream(Tile.values()).filter(tile -> tile.getType() == target).toList();
     }
 
+    /**
+     * Checks if given tile is same as this tile.
+     * <p>
+     * Needed to be overridden to account for red fives.
+     *
+     * @param that tile to check
+     * @return if tiles are the same
+     */
     public boolean equals(Tile that) {
         return this.getSuit() == that.getSuit() && this.getValue() == that.getValue();
     }
