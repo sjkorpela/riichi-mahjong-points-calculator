@@ -1,10 +1,21 @@
 package com.sjkorpela.RiichiPointsCalculator.Enums;
 
 import lombok.Getter;
-
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Enum values of all Riichi Mahjong Tiles.
+ * <p/>
+ * The tiles have relevant attributes as getters:
+ * - Tile value with getValue() as int, 1-9 for numbered tiles, 0-3 for wind tiles, and 0-2 for dragon tiles.
+ * - Tile suit with getSuit() as {@link com.sjkorpela.RiichiPointsCalculator.Enums.Suit}
+ * - Tile type with getType() as {@link com.sjkorpela.RiichiPointsCalculator.Enums.Type}
+ * - If the tile is a Red Dora with getRed() as boolean
+ * - A more readable name with getReadableName(), ex. s1 -> Sou 1, or we -> Wind East
+ *
+ * @author Santeri Korpela
+ */
 @Getter
 public enum Tile {
     s1("Sou 1"),
@@ -47,11 +58,11 @@ public enum Tile {
     any("Debug Tile"),
     ;
 
-    private final Suit suit;
     private final int value;
+    private final Suit suit;
     private final Type type;
-    private final String readableName;
     private final Boolean red;
+    private final String readableName;
 
     Tile(String readableName) {
         this.readableName = readableName;
@@ -89,30 +100,78 @@ public enum Tile {
                 this.type = null;
                 break;
         }
-
-//        System.out.println(this + ": " + suit + ", " + ", " + value + ", " + type + ", " + readableName + ", " + red);
     }
 
+    /**
+     * Get all tiles of given {@link com.sjkorpela.RiichiPointsCalculator.Enums.Suit}.
+     * <p/>
+     * Ex. get all wind tiles with `Tile.getAllTilesBySuit(Suit.Wind);`
+     *
+     * @param target target suit
+     * @return list of all tiles of suit
+     */
     public static List<Tile> getAllTilesBySuit(Suit target) {
-        return Arrays.stream(Tile.values()).filter(tile -> tile.suit == target).toList();
+        return Arrays.stream(Tile.values()).filter(tile -> tile.getSuit() == target).toList();
     }
 
+    /**
+     * Get all tiles of given {@link com.sjkorpela.RiichiPointsCalculator.Enums.Type}.
+     * <p/>
+     * Ex. get all terminal tiles with `Tile.getAllTilesBySuit(Type.Terminal);`
+     *
+     * @param target target type
+     * @return list of all tiles of type
+     */
     public static List<Tile> getAllTilesByType(Type target) {
-        return Arrays.stream(Tile.values()).filter(tile -> tile.type == target).toList();
+        return Arrays.stream(Tile.values()).filter(tile -> tile.getType() == target).toList();
     }
 
     public boolean equals(Tile that) {
         return this.getSuit() == that.getSuit() && this.getValue() == that.getValue();
     }
 
+    /**
+     * Checks if given {@link com.sjkorpela.RiichiPointsCalculator.Enums.Wind} is same as current tile.
+     * <p/>
+     * Ex. ´Tile.we.equalsWind(Wind.we)´ returns true, ´Tile.s1.equalsWind(Wind.wn)´ returns false
+     *
+     * @param wind wind to be checked
+     * @return if tile is target wind
+     */
+    public boolean equalsWind(Wind wind) {
+        return this.value == wind.ordinal();
+    }
+
+    /**
+     * Returns this tile converted to equivalent {@link com.sjkorpela.RiichiPointsCalculator.Enums.Wind} or null.
+     * <p/>
+     * Ex. ´Tile.we.toWind()´ returns ´Wind.we´, ´Tile.s1.toWind()´ returns ´null´
+     *
+     * @return tile converted to wind or null
+     */
+    public Wind toWind() {
+        if (this.suit != Suit.Wind) { return null; }
+        return Wind.valueOf(this.toString());
+    }
+
+    /**
+     * Checks if given tile is the next one in a sequence.
+     * <p/>
+     * Ex. ´Tile.s1.isNext(Tile.s2)´ returns true, ´Tile.s9.isNext(Tile.s1)´ returns false
+     *
+     * @param that tile to check
+     * @return if the tile is next
+     */
     public boolean isNext(Tile that) {
         return this.getSuit() == that.getSuit() && this.getValue() + 1 == that.getValue();
     }
 
-    public boolean isWind(Wind wind) {
-        return this.value == wind.ordinal();
-    }
-
+    /**
+     * Checks if given tile is the Dora indicated by this one.
+     *
+     * @param that tile to check
+     * @return if the tile is indicated
+     */
     public boolean isDoraIndicatorOf(Tile that) {
 
         switch (this.getSuit()) {
@@ -135,12 +194,4 @@ public enum Tile {
                 return isNext || loopsAround;
         }
     }
-
-    public Wind toWind() {
-        if (this.suit == Suit.Wind) {
-            return Wind.valueOf(this.toString());
-        }
-        return null;
-    }
-
 }
