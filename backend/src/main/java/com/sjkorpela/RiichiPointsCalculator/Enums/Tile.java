@@ -113,6 +113,29 @@ public enum Tile {
         return this.value == wind.ordinal();
     }
 
+    public boolean isDoraIndicatorOf(Tile that) {
+
+        switch (this.getSuit()) {
+            case Wind:
+                switch (Wind.valueOf(this.toString())) {
+                    case we -> { return that.equals(Tile.ws); }
+                    case ws -> { return that.equals(Tile.ww); }
+                    case ww -> { return that.equals(Tile.wn); }
+                    case wn -> { return that.equals(Tile.we); }
+                }
+            case Dragon:
+                switch (Dragon.valueOf(this.toString())) {
+                    case dg -> { return that.equals(Tile.dr); }
+                    case dr -> { return that.equals(Tile.dw); }
+                    case dw -> { return that.equals(Tile.dg); }
+                }
+            default:
+                boolean isNext = this.isNext(that);
+                boolean loopsAround = this.getValue() == 9 && that.getValue() == 1 && this.getSuit() == that.getSuit();
+                return isNext || loopsAround;
+        }
+    }
+
     public Wind toWind() {
         if (this.suit == Suit.Wind) {
             return Wind.valueOf(this.toString());

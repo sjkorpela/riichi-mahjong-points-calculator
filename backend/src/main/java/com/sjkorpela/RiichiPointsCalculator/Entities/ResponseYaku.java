@@ -30,6 +30,18 @@ public class ResponseYaku {
         this.han = details.han;
     }
 
+    public ResponseYaku(Yaku yaku, List<Tile> tiles, boolean open, Integer han) {
+        this.yaku = yaku;
+        this.tiles = tiles;
+        this.han = han;
+
+        ResponseYaku details = JsonService.getYakuDetails(yaku, open);
+
+        this.englishName = details.englishName;
+        this.japaneseName = details.japaneseName;
+        this.description = details.description;
+    }
+
     public ResponseYaku(String englishName, String japaneseName, String description, Integer han) {
         this.englishName = englishName;
         this.japaneseName = japaneseName;

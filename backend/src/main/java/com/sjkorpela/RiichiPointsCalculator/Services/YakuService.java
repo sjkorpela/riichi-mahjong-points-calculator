@@ -775,17 +775,40 @@ public class YakuService {
         List<Tile> hand = request.getFullHandAsList();
 
         int doraCount = 0;
+        List<Tile> doras = new ArrayList<>();
         int akaDoraCount = 0;
+        List<Tile> akaDoras = new ArrayList<>();
 
         for (Tile tile : hand) {
-            if (tile.getRed()) { akaDoraCount++; }
+            if (tile.getRed()) {
+                akaDoraCount++;
+                akaDoras.add(tile);
+            }
             for (Tile dora : doraTiles) {
-                if (dora.isNext(tile)) {
+                if (dora.isDoraIndicatorOf(tile)) {
                     doraCount++;
-                } else if (dora.getSuit() == tile.getSuit() && dora.getValue() == 9 && tile.getValue() == 1) {
-                    doraCount++;
+                    doras.add(tile);
                 }
             }
         }
+
+        if (doraCount > 0) {
+            request.getResponseYaku().add(new ResponseYaku(
+                    Yaku.Dora,
+                    doras,
+                    request.getOpenHand(),
+                    doraCount
+            ));
+        }
+
+        if (akaDoraCount > 0) {
+            request.getResponseYaku().add(new ResponseYaku(
+                    Yaku.AkaDora,
+                    akaDoras,
+                    request.getOpenHand(),
+                    akaDoraCount
+            ));
+        }
+
     }
 }

@@ -109,6 +109,8 @@ public class PointsService {
         }
 
         YakuService.checkForConcealedTriplets(request);
+
+        YakuService.checkForDora(request);
     }
 
     public static void countFu(PointsRequest request) {
