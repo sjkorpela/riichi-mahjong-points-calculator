@@ -121,14 +121,14 @@ public class PointsService {
         List<PossibleHand> hands = request.getPossibleHands();
         if (hands.size() == 1) {
             request.getResponseYaku().addAll(hands.getFirst().getYaku());
+            request.setFu(HandService.roundFu(hands.getFirst().getFu()));
         } else {
             PossibleHand bestHand = HandService.getPossibleHand(hands);
 
             request.getResponseYaku().addAll(bestHand.getYaku());
+            request.setFu(HandService.roundFu(bestHand.getFu()));
         }
 
         YakuService.checkForDora(request);
     }
-
-
 }

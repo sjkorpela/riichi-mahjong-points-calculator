@@ -147,6 +147,10 @@ public class HandService {
         }
     }
 
+    public static int roundFu(int fu) {
+        return Math.round((float)fu / 10) * 10;
+    }
+
     public static PossibleHand getPossibleHand(List<PossibleHand> hands) {
         int mostHan = 0;
         PossibleHand bestHand = null;

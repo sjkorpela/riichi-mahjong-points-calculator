@@ -48,12 +48,12 @@ public class PointsRequest {
     private Boolean openHand;
     private HashMap<String, Boolean> flags;
 
-    private Integer fu;
     private List<Yaku> yaku;
     private List<ResponseYaku> responseYaku;
     private Boolean yakumanAchieved;
     private Suit flushSuit;
     private List<PossibleHand> possibleHands;
+    private Integer fu;
 
     public void initializeOtherFields() {
         fu = 0;
