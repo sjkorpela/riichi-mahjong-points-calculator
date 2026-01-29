@@ -15,7 +15,7 @@ import java.util.List;
  * <li>If the tile is a Red Dora with getRed() as boolean</li>
  * <li>A more readable name with getReadableName(), ex. s1 -> Sou 1, or we -> Wind East</li>
  * </ul>
- * <p>
+ *
  * @author Santeri Korpela
  */
 @Getter

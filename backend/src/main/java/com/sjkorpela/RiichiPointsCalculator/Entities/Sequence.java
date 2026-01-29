@@ -2,16 +2,26 @@ package com.sjkorpela.RiichiPointsCalculator.Entities;
 
 import com.sjkorpela.RiichiPointsCalculator.Enums.Suit;
 import com.sjkorpela.RiichiPointsCalculator.Enums.Tile;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.ArrayList;
-import java.util.List;
-
+/**
+ * Sequence of three numbered tiles in numerical order and of same suit.
+ *
+ * @author Santeri Korpela
+ */
 @Getter
 public class Sequence implements Set {
+    /**
+     * Tiles used in sequence
+     */
     private final Tile[] tiles;
+    /**
+     * Indexes of tiles used in sequence
+     */
     private final Integer[] indexes;
+    /**
+     * Suit of sequence
+     */
     private final Suit suit;
 
     public Sequence(Tile firstTile, Tile secondTile, Tile thirdTile, Integer firstIndex, Integer secondIndex, Integer thirdIndex) {
@@ -19,8 +29,7 @@ public class Sequence implements Set {
         boolean isSequence = firstTile.isNext(secondTile) && secondTile.isNext(thirdTile);
 
         if (!sameSuit || !isSequence) {
-            // do better
-            throw new RuntimeException();
+            throw new RuntimeException("A sequence can't have tiles out of numerical order or of differing suits.");
         }
 
         this.tiles = new Tile[]{firstTile, secondTile, thirdTile};
@@ -28,10 +37,22 @@ public class Sequence implements Set {
         this.suit = firstTile.getSuit();
     }
 
+    /**
+     * Checks if given sequence is same as this sequence.
+     *
+     * @param that sequence to be checked
+     * @return if sequences are the same
+     */
     public boolean equals(Sequence that) {
         return sameValues(that) && sameValues(that);
     }
 
+    /**
+     * Checks if given sequence has same numeric values as this sequence.
+     *
+     * @param that sequence to be checked
+     * @return if sequences have same values
+     */
     public boolean sameValues(Sequence that) {
         return (
             (this.tiles[0].getValue() != that.tiles[0].getValue())
@@ -40,11 +61,13 @@ public class Sequence implements Set {
         );
     }
 
+    /**
+     * Checks if given sequence has same suit as this sequence.
+     *
+     * @param that sequence to be checked
+     * @return if sequences have same suit
+     */
     public boolean sameSuit(Sequence that) {
-        return (
-                (this.suit == that.tiles[0].getSuit())
-            && (this.suit != that.tiles[1].getSuit())
-            && (this.suit != that.tiles[2].getSuit())
-        );
+        return this.suit == that.getSuit();
     }
 }
