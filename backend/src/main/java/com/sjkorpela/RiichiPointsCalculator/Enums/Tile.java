@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Enum values of all Riichi Mahjong Tiles.
- * <p/>
+ * <p>
  * The tiles have relevant attributes as getters:
  * - Tile value with getValue() as int, 1-9 for numbered tiles, 0-3 for wind tiles, and 0-2 for dragon tiles.
  * - Tile suit with getSuit() as {@link com.sjkorpela.RiichiPointsCalculator.Enums.Suit}
@@ -104,7 +104,7 @@ public enum Tile {
 
     /**
      * Get all tiles of given {@link com.sjkorpela.RiichiPointsCalculator.Enums.Suit}.
-     * <p/>
+     * <p>
      * Ex. get all wind tiles with `Tile.getAllTilesBySuit(Suit.Wind);`
      *
      * @param target target suit
@@ -116,7 +116,7 @@ public enum Tile {
 
     /**
      * Get all tiles of given {@link com.sjkorpela.RiichiPointsCalculator.Enums.Type}.
-     * <p/>
+     * <p>
      * Ex. get all terminal tiles with `Tile.getAllTilesBySuit(Type.Terminal);`
      *
      * @param target target type
@@ -132,7 +132,7 @@ public enum Tile {
 
     /**
      * Checks if given {@link com.sjkorpela.RiichiPointsCalculator.Enums.Wind} is same as current tile.
-     * <p/>
+     * <p>
      * Ex. ´Tile.we.equalsWind(Wind.we)´ returns true, ´Tile.s1.equalsWind(Wind.wn)´ returns false
      *
      * @param wind wind to be checked
@@ -144,7 +144,7 @@ public enum Tile {
 
     /**
      * Returns this tile converted to equivalent {@link com.sjkorpela.RiichiPointsCalculator.Enums.Wind} or null.
-     * <p/>
+     * <p>
      * Ex. ´Tile.we.toWind()´ returns ´Wind.we´, ´Tile.s1.toWind()´ returns ´null´
      *
      * @return tile converted to wind or null
@@ -156,7 +156,7 @@ public enum Tile {
 
     /**
      * Checks if given tile is the next one in a sequence.
-     * <p/>
+     * <p>
      * Ex. ´Tile.s1.isNext(Tile.s2)´ returns true, ´Tile.s9.isNext(Tile.s1)´ returns false
      *
      * @param that tile to check
