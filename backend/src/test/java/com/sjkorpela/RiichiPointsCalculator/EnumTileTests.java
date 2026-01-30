@@ -74,6 +74,16 @@ public class EnumTileTests {
     }
 
     @Test
+    public void shouldThrowIllegalArgumentExceptionForNullParam() {
+        assertThrows(IllegalArgumentException.class, () -> Tile.s1.equals(null));
+        assertThrows(IllegalArgumentException.class, () -> Tile.getAllTilesBySuit(null));
+        assertThrows(IllegalArgumentException.class, () -> Tile.getAllTilesByType(null));
+        assertThrows(IllegalArgumentException.class, () -> Tile.s1.equalsWind(null));
+        assertThrows(IllegalArgumentException.class, () -> Tile.s1.isNext(null));
+        assertThrows(IllegalArgumentException.class, () -> Tile.s1.isDoraIndicatorOf(null));
+    }
+
+    @Test
     public void shouldReturnAllSouTiles() {
         List<Tile> allSouTiles = Arrays.asList(
                 Tile.s1,
@@ -99,6 +109,33 @@ public class EnumTileTests {
                 Tile.wn
         );
         assertEquals(allWindTiles, Tile.getAllTilesBySuit(Suit.Wind));
+    }
+
+    @Test
+    public void shouldReturnAllTerminalTiles() {
+        List<Tile> allHonors = Arrays.asList(
+                Tile.s1,
+                Tile.s9,
+                Tile.m1,
+                Tile.m9,
+                Tile.p1,
+                Tile.p9
+        );
+        assertEquals(allHonors, Tile.getAllTilesByType(Type.Terminal));
+    }
+
+    @Test
+    public void shouldReturnAllHonorTiles() {
+        List<Tile> allHonors = Arrays.asList(
+                Tile.we,
+                Tile.ws,
+                Tile.ww,
+                Tile.wn,
+                Tile.dg,
+                Tile.dr,
+                Tile.dw
+        );
+        assertEquals(allHonors, Tile.getAllTilesByType(Type.Honor));
     }
 
     @Test
@@ -142,8 +179,10 @@ public class EnumTileTests {
         assertSame(false, Tile.s1.isDoraIndicatorOf(Tile.s3));
         assertSame(false, Tile.m5r.isDoraIndicatorOf(Tile.p6));
         assertSame(false, Tile.s9.isDoraIndicatorOf(Tile.m5r));
-        assertSame(false, Tile.we.isDoraIndicatorOf(Tile.we));
-        assertSame(false, Tile.wn.isDoraIndicatorOf(Tile.ww));
-        assertSame(false, Tile.dw.isDoraIndicatorOf(Tile.dr));
+        assertSame(false, Tile.s9.isDoraIndicatorOf(Tile.m1));
+        assertSame(false, Tile.ws.isDoraIndicatorOf(Tile.we));
+        assertSame(false, Tile.ww.isDoraIndicatorOf(Tile.m5));
+        assertSame(false, Tile.dr.isDoraIndicatorOf(Tile.dr));
+        assertSame(false, Tile.dg.isDoraIndicatorOf(Tile.s1));
     }
 }

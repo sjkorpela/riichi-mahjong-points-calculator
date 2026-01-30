@@ -113,6 +113,7 @@ public enum Tile {
      * @return list of all tiles of suit
      */
     public static List<Tile> getAllTilesBySuit(Suit target) {
+        if (target == null) { throw new IllegalArgumentException("Param tile can't be null."); }
         return Arrays.stream(Tile.values()).filter(tile -> tile.getSuit() == target).toList();
     }
 
@@ -125,6 +126,7 @@ public enum Tile {
      * @return list of all tiles of type
      */
     public static List<Tile> getAllTilesByType(Type target) {
+        if (target == null) { throw new IllegalArgumentException("Param can't be null."); }
         return Arrays.stream(Tile.values()).filter(tile -> tile.getType() == target).toList();
     }
 
@@ -137,6 +139,7 @@ public enum Tile {
      * @return if tiles are the same
      */
     public boolean equals(Tile that) {
+        if (that == null) { throw new IllegalArgumentException("Param can't be null."); }
         return this.getSuit() == that.getSuit() && this.getValue() == that.getValue();
     }
 
@@ -149,6 +152,7 @@ public enum Tile {
      * @return if tile is target wind
      */
     public boolean equalsWind(Wind wind) {
+        if (wind == null) { throw new IllegalArgumentException("Param can't be null."); }
         return this.value == wind.ordinal();
     }
 
@@ -173,6 +177,7 @@ public enum Tile {
      * @return if the tile is next
      */
     public boolean isNext(Tile that) {
+        if (that == null) { throw new IllegalArgumentException("Param tile can't be null."); }
         return this.getSuit() == that.getSuit() && this.getValue() + 1 == that.getValue();
     }
 
@@ -183,6 +188,7 @@ public enum Tile {
      * @return if the tile is indicated
      */
     public boolean isDoraIndicatorOf(Tile that) {
+        if (that == null) { throw new IllegalArgumentException("Param tile can't be null."); }
 
         switch (this.getSuit()) {
             case Wind:
@@ -201,6 +207,7 @@ public enum Tile {
             default:
                 boolean isNext = this.isNext(that);
                 boolean loopsAround = this.getValue() == 9 && that.getValue() == 1 && this.getSuit() == that.getSuit();
+                System.out.println(this.getReadableName() + ", " + that.getReadableName() + ", " + isNext + ", " + loopsAround);
                 return isNext || loopsAround;
         }
     }
