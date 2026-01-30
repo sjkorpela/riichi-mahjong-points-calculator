@@ -1,16 +1,12 @@
-package com.sjkorpela.RiichiPointsCalculator;
+package com.sjkorpela.RiichiPointsCalculator.Enums;
 
-import com.sjkorpela.RiichiPointsCalculator.Enums.Suit;
-import com.sjkorpela.RiichiPointsCalculator.Enums.Tile;
-import com.sjkorpela.RiichiPointsCalculator.Enums.Type;
-import com.sjkorpela.RiichiPointsCalculator.Enums.Wind;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-public class EnumTileTests {
+public class TileTests {
 
     @Test
     public void shouldGetTileAttributesFromName() {

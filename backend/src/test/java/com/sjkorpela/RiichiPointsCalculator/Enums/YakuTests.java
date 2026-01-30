@@ -1,7 +1,6 @@
-package com.sjkorpela.RiichiPointsCalculator;
+package com.sjkorpela.RiichiPointsCalculator.Enums;
 
 
-import com.sjkorpela.RiichiPointsCalculator.Enums.Yaku;
 import static com.sjkorpela.RiichiPointsCalculator.Enums.Yaku.*;
 
 import org.junit.jupiter.api.Test;
@@ -10,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 
-public class EnumYakuTests {
+public class YakuTests {
 
     @Test
     public void shouldProvideAllYakuman() {
