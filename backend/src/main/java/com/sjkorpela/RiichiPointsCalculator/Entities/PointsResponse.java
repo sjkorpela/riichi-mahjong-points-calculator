@@ -54,8 +54,10 @@ public class PointsResponse {
             this.score = this.dealer ? 48000 : 32000;
         } else if (this.han >= 11) { // Sanbaiman
             this.score = this.dealer ? 36000 : 24000;
-        } else if (this.han >= 8) { // Haneman
+        } else if (this.han >= 8) { // Baiman
             this.score = this.dealer ? 24000 : 16000;
+        } else if (this.han >= 6) { // Haneman
+            this.score = this.dealer ? 18000 : 12000;
         } else if (this.han >= 5) { // Mangan
             this.score = this.dealer ? 12000 : 8000;
         } else { // Han < 5

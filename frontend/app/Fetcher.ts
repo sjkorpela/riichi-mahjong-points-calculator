@@ -29,6 +29,10 @@ export interface YakuResponse {
     status: number,
     yaku: ResponseYaku[],
     openHand: boolean,
+    han: number,
+    fu: number,
+    score: number,
+    dealer: boolean
 }
 
 export class Fetcher {

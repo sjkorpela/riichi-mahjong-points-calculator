@@ -27,7 +27,6 @@ public class HandService {
         List<Tile> tiles = hand.getTiles();
 
         if (currentIndex == null || currentIndex == tiles.size() - 1) {
-            hand.setReady(true);
             readyHands.add(hand);
             return;
         }
