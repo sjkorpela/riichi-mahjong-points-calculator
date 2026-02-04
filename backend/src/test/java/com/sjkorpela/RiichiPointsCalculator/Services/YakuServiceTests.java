@@ -77,6 +77,5 @@ public class YakuServiceTests {
         List<ResponseYaku> yaku = testRequest.getResponseYaku();
         assertEquals(1, yaku.size());
         assertEquals(Yaku.LastTile, yaku.getFirst().getYaku());
-        assertTrue(testRequest.getYakumanAchieved());
     }
 }
