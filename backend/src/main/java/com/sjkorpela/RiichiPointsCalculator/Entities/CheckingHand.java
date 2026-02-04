@@ -18,6 +18,7 @@ public class CheckingHand {
     private Pair pair = null;
     private int fu;
     private boolean openHand;
+    private int winningIndex;
 
     public CheckingHand(List<Tile> tiles, boolean openHand) {
         if (tiles == null || tiles.size() != 14) { throw new IllegalArgumentException("New CheckingHand's tiles must be not null and 14 tiles."); }
@@ -44,6 +45,7 @@ public class CheckingHand {
         this.pair = old.pair;
         this.openHand = old.openHand;
         this.fu = old.fu;
+        this.winningIndex = old.winningIndex;
     }
 
     public Integer getFirstUnspentIndex() {

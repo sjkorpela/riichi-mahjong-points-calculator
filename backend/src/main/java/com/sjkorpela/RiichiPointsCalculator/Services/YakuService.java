@@ -9,13 +9,14 @@ import java.util.stream.Stream;
 
 public class YakuService {
     /**
-     *
+     *  Checks for Yaku that are based on things that can't be measured from tiles, and so are flagged.
+     *  <p>
+     *  Ex. winning from the last tile of the game.
      *
      * @param request object that the hand is checked from
      */
     public static void checkForFlagsYaku(PointsRequest request) {
         if (request.getFlags().getOrDefault("blessedHand", false)) {
-//            request.getYaku().add(Yaku.BlessedHand);
             request.getResponseYaku().add(new ResponseYaku(
                     Yaku.BlessedHand,
                     request.getFullHandAsList(),
@@ -26,7 +27,6 @@ public class YakuService {
         }
 
         if (request.getFlags().getOrDefault("afterKan", false)) {
-//            request.getYaku().add(Yaku.AfterKan);
             request.getResponseYaku().add(new ResponseYaku(
                     Yaku.AfterKan,
                     Collections.singletonList(request.getWinningTile()),
@@ -35,7 +35,6 @@ public class YakuService {
         }
 
         if (request.getFlags().getOrDefault("lastTile", false)) {
-//            request.getYaku().add(Yaku.LastTile);
             request.getResponseYaku().add(new ResponseYaku(
                     Yaku.LastTile,
                     Collections.singletonList(request.getWinningTile()),
@@ -87,7 +86,6 @@ public class YakuService {
 
         // If no orphans were paired or missing, and winning tile is an orphan, hand is 13w13o
         if (pair == null && orphans.contains(request.getWinningTile())) {
-//            request.getYaku().add(Yaku.ThirteenWaitThirteenOrphans);
             request.getResponseYaku().add(new ResponseYaku(
                     Yaku.ThirteenWaitThirteenOrphans,
                     request.getFullHandAsList(),
@@ -95,7 +93,6 @@ public class YakuService {
             ));
             request.setYakumanAchieved(true);
         } else {
-//            request.getYaku().add(Yaku.ThirteenOrphans);
             request.getResponseYaku().add(new ResponseYaku(
                     Yaku.ThirteenOrphans,
                     request.getFullHandAsList(),
@@ -352,7 +349,6 @@ public class YakuService {
         if (request.getOpenHand()) { return; }
 
         if (request.getTsumo()) {
-//            request.getYaku().add(Yaku.Tsumo);
             request.getResponseYaku().add(new ResponseYaku(
                     Yaku.Tsumo,
                     Collections.singletonList(request.getWinningTile()),
@@ -365,25 +361,23 @@ public class YakuService {
         boolean ippatsu = request.getFlags().getOrDefault("ippatsu", false);
 
         if (riichi && !doubleRiichi) {
-//            request.getYaku().add(Yaku.Riichi);
             request.getResponseYaku().add(new ResponseYaku(
                     Yaku.Riichi,
                     new ArrayList<Tile>(),
                     request.getOpenHand()
             ));
-        } else if (riichi && doubleRiichi) {
+        } else if (doubleRiichi) {
             request.getResponseYaku().add(new ResponseYaku(
                     Yaku.DoubleRiichi,
-                    new ArrayList<Tile>(),
+                    new ArrayList<>(),
                     request.getOpenHand()
             ));
         }
 
         if (riichi && ippatsu) {
-//            request.getYaku().add(Yaku.Ippatsu);
             request.getResponseYaku().add(new ResponseYaku(
                     Yaku.Ippatsu,
-                    new ArrayList<Tile>(),
+                    new ArrayList<>(),
                     request.getOpenHand()
             ));
         }
@@ -391,13 +385,25 @@ public class YakuService {
 
     public static void checkForPinfu(PointsRequest request) {
         for (PossibleHand hand : request.getPossibleHands()) {
-            int winFu = request.getTsumo() ? 2 : 10;
+            int winFu;
+
+            if (request.getTsumo()) {
+                winFu = 2;
+            } else if (!request.getOpenHand()) {
+                winFu = 10;
+            } else {
+                winFu = 0;
+            }
+
             if (hand.getFu() - winFu == 20) {
-                hand.getYaku().add(new ResponseYaku(
+                hand.getResponseYaku().add(new ResponseYaku(
                         Yaku.Pinfu,
                         new ArrayList<Tile>(),
                         request.getOpenHand()
                 ));
+
+                // Pinfu Tsumo is 20 Fu, and Pinfu Ron is 30 Fu
+                hand.setFu( request.getTsumo() ? 20 : 30);
             }
         }
     }
@@ -646,14 +652,14 @@ public class YakuService {
 
         if (hasHonors) {
 //            hand.getYaku().add(Yaku.HalfOutsideHand);
-            hand.getYaku().add(new ResponseYaku(
+            hand.getResponseYaku().add(new ResponseYaku(
                     Yaku.HalfOutsideHand,
                     new ArrayList<>(),
                     hand.isOpenHand()
             ));
         } else {
 //            hand.getYaku().add(Yaku.FullyOutsideHand);
-            hand.getYaku().add(new ResponseYaku(
+            hand.getResponseYaku().add(new ResponseYaku(
                     Yaku.FullyOutsideHand,
                     new ArrayList<>(),
                     hand.isOpenHand()
@@ -691,7 +697,7 @@ public class YakuService {
 
             if (oneTwoThree && fourFiveSix && sevenEightNine) {
 //                hand.getYaku().add(Yaku.PureStraight);
-                hand.getYaku().add(new ResponseYaku(
+                hand.getResponseYaku().add(new ResponseYaku(
                         Yaku.PureStraight,
                         new ArrayList<>(),
                         hand.isOpenHand()
@@ -717,14 +723,14 @@ public class YakuService {
 
         if (pureDoubleSequenceAmount == 1) {
 //            hand.getYaku().add(Yaku.PureDoubleSequence);
-            hand.getYaku().add(new ResponseYaku(
+            hand.getResponseYaku().add(new ResponseYaku(
                     Yaku.PureDoubleSequence,
                     new ArrayList<>(),
                     hand.isOpenHand()
             ));
         } else if (pureDoubleSequenceAmount == 2) {
 //            hand.getYaku().add(Yaku.TwicePureDoubleSequence);
-            hand.getYaku().add(new ResponseYaku(
+            hand.getResponseYaku().add(new ResponseYaku(
                     Yaku.TwicePureDoubleSequence,
                     new ArrayList<>(),
                     hand.isOpenHand()
@@ -732,55 +738,56 @@ public class YakuService {
         }
     }
 
-    public static void checkForMixedTriples(PossibleHand hand) {
-        List<Triplet> triplets = hand.getTriplets();
-        List<Sequence> sequences = hand.getSequences();
+    public static void checkForMixedTriples(PointsRequest request) {
 
-        boolean tripleTriplets = false;
+        for (PossibleHand hand : request.getPossibleHands()) {
+            List<Triplet> triplets = hand.getTriplets();
+            List<Sequence> sequences = hand.getSequences();
 
-        if (triplets.size() >= 3) {
-            HashMap<Integer, Integer> count = new HashMap<>();
+            boolean tripleTriplets = false;
 
-            for (Triplet triplet : triplets) {
-                Tile tile = triplet.getTile();
-                if (tile.getType() != Type.Honor) {
+            if (triplets.size() >= 3) {
+                HashMap<Integer, Integer> count = new HashMap<>();
+
+                for (Triplet triplet : triplets) {
+                    Tile tile = triplet.getTile();
+                    if (tile.getType() != Type.Honor) {
+                        count.merge(tile.getValue(), 1, Integer::sum);
+                    }
+                }
+
+                for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
+                    int amount = entry.getValue();
+
+                    if (amount >= 3) {
+                        hand.getResponseYaku().add(new ResponseYaku(
+                                Yaku.TripleTriplets,
+                                new ArrayList<>(),
+                                hand.isOpenHand()
+                        ));
+                        tripleTriplets = true;
+                    }
+                }
+            }
+
+            if (!tripleTriplets && sequences.size() >= 3) {
+                HashMap<Integer, Integer> count = new HashMap<>();
+
+                for (Sequence sequence : sequences) {
+                    Tile tile = sequence.getTiles()[0];
                     count.merge(tile.getValue(), 1, Integer::sum);
                 }
-            }
 
-            for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
-                int amount = entry.getValue();
+                for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
+                    int amount = entry.getValue();
 
-                if (amount >= 3) {
-//                    hand.getYaku().add(Yaku.TripleTriplets);
-                    hand.getYaku().add(new ResponseYaku(
-                            Yaku.TripleTriplets,
-                            new ArrayList<>(),
-                            hand.isOpenHand()
-                    ));
-                    tripleTriplets = true;
-                }
-            }
-        }
-
-        if (!tripleTriplets && sequences.size() >= 3) {
-            HashMap<Integer, Integer> count = new HashMap<>();
-
-            for (Sequence sequence : sequences) {
-                Tile tile = sequence.getTiles()[0];
-                count.merge(tile.getValue(), 1, Integer::sum);
-            }
-
-            for (Map.Entry<Integer, Integer> entry : count.entrySet()) {
-                int amount = entry.getValue();
-
-                if (amount >= 3) {
-//                    hand.getYaku().add(Yaku.MixedTripleSequence);
-                    hand.getYaku().add(new ResponseYaku(
-                            Yaku.MixedTripleSequence,
-                            new ArrayList<>(),
-                            hand.isOpenHand()
-                    ));
+                    if (amount >= 3) {
+                        hand.getResponseYaku().add(new ResponseYaku(
+                                Yaku.MixedTripleSequence,
+                                new ArrayList<>(),
+                                hand.isOpenHand()
+                        ));
+                    }
                 }
             }
         }
@@ -808,14 +815,14 @@ public class YakuService {
             // DOES NOT ACCOUNT FOR SINGLE WAIT FOUR CONCEALED TRIPLETS
             if (concealedTriplets == 4) {
 //                hand.getYaku().add(Yaku.FourConcealedTriplets);
-                hand.getYaku().add(new ResponseYaku(
+                hand.getResponseYaku().add(new ResponseYaku(
                         Yaku.FourConcealedTriplets,
                         new ArrayList<>(),
                         hand.isOpenHand()
                 ));
             } else if (concealedTriplets == 3) {
 //                hand.getYaku().add(Yaku.ThreeConcealedTriplets);
-                hand.getYaku().add(new ResponseYaku(
+                hand.getResponseYaku().add(new ResponseYaku(
                         Yaku.ThreeConcealedTriplets,
                         new ArrayList<>(),
                         hand.isOpenHand()

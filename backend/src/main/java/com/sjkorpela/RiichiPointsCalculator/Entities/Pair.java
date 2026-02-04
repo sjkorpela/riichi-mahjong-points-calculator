@@ -16,4 +16,9 @@ public class Pair implements Set {
         this.tile = tile;
         this.indexes = new Integer[]{firstIndex, secondIndex};
     }
+
+    @Override
+    public String toString() {
+        return "(" + getTile() + ", " + getTile() + ")";
+    }
 }

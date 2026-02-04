@@ -87,4 +87,13 @@ public class PointsRequest {
         temp.merge(winningTile, 1, Integer::sum);
         return temp;
     }
+
+    public boolean hasYaku(Yaku yaku) {
+        for (ResponseYaku responseYaku : this.responseYaku) {
+            if (responseYaku.getYaku() == yaku) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

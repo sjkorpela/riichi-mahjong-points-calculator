@@ -1,21 +1,19 @@
 package com.sjkorpela.RiichiPointsCalculator.Entities;
 
-import com.sjkorpela.RiichiPointsCalculator.Enums.Tile;
-import com.sjkorpela.RiichiPointsCalculator.Enums.Yaku;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 @Getter
 @Setter
 public class PossibleHand {
     private List<Set> sets;
-    private List<ResponseYaku> yaku;
+    private List<ResponseYaku> responseYaku;
     private Integer fu;
     private boolean openHand;
+    private int winningIndex;
 
     public PossibleHand(CheckingHand hand) {
         this.sets = new ArrayList<>();
@@ -24,8 +22,9 @@ public class PossibleHand {
         this.sets.add(hand.getPair());
         this.fu = null;
         this.openHand = hand.isOpenHand();
+        this.winningIndex = hand.getWinningIndex();
 
-        this.yaku = new ArrayList<>();
+        this.responseYaku = new ArrayList<>();
     }
 
     public List<Sequence> getSequences() {
@@ -62,13 +61,14 @@ public class PossibleHand {
         StringBuilder string = new StringBuilder();
 
         for (Sequence sequence : getSequences()) {
-            string.append("(" + sequence.getTiles()[0] + ", " + sequence.getTiles()[1] + ", " + sequence.getTiles()[2] + ")");
+            string.append(sequence.toString());
         }
         for (Triplet triplet : getTriplets()) {
-            string.append("(" + triplet.getTile() + ", " + triplet.getTile() + ", " + triplet.getTile() + ")");
+            string.append(triplet.toString());
         }
-        string.append("(" + getPair().getTile() + ", " + getPair().getTile() + ")");
-        string.append(", Fu: " + fu);
+        string.append(getPair().toString());
+        string.append(", Fu: ").append(fu);
+        string.append(", WinIndex: ").append(winningIndex);
 
         return string.toString();
     }

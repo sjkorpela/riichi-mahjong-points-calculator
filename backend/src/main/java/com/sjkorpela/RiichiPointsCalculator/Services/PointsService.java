@@ -2,10 +2,7 @@ package com.sjkorpela.RiichiPointsCalculator.Services;
 
 import com.sjkorpela.RiichiPointsCalculator.Entities.PointsRequest;
 import com.sjkorpela.RiichiPointsCalculator.Entities.PossibleHand;
-import com.sjkorpela.RiichiPointsCalculator.Entities.ResponseYaku;
-import com.sjkorpela.RiichiPointsCalculator.Entities.Triplet;
 import com.sjkorpela.RiichiPointsCalculator.Enums.*;
-import org.jspecify.annotations.NonNull;
 
 import java.util.List;
 
@@ -107,7 +104,7 @@ public class PointsService {
 
         if (!eitherFlush) {
             for (PossibleHand hand : request.getPossibleHands()) {
-                YakuService.checkForMixedTriples(hand);
+                YakuService.checkForMixedTriples(request);
             }
         }
 
@@ -120,15 +117,53 @@ public class PointsService {
         // Apply best hand
         List<PossibleHand> hands = request.getPossibleHands();
         if (hands.size() == 1) {
-            request.getResponseYaku().addAll(hands.getFirst().getYaku());
+            request.getResponseYaku().addAll(hands.getFirst().getResponseYaku());
             request.setFu(HandService.roundFu(hands.getFirst().getFu()));
         } else {
-            PossibleHand bestHand = HandService.getPossibleHand(hands);
+            PossibleHand bestHand = HandService.getBestPossiblehand(hands);
 
-            request.getResponseYaku().addAll(bestHand.getYaku());
+            request.getResponseYaku().addAll(bestHand.getResponseYaku());
             request.setFu(HandService.roundFu(bestHand.getFu()));
         }
 
         YakuService.checkForDora(request);
+    }
+
+    public static void calculatePoints(PointsRequest request) {
+
+        HandService.getPossibleHands(request);
+
+        YakuService.checkForThirteenOrphans(request);
+        boolean thirteenOrphans = request.hasYaku(Yaku.ThirteenOrphans) || request.hasYaku(Yaku.ThirteenWaitThirteenOrphans);
+
+        YakuService.checkForSevenPairs(request);
+        boolean sevenPairs = request.getYaku().contains(Yaku.SevenPairs);
+
+        if (request.getPossibleHands().isEmpty() && !thirteenOrphans && !sevenPairs) {
+            throw new IllegalArgumentException("Hand isn't valid! Not Seven Pairs, Thirteen Orphans, or a valid collection of four sets and one pair.");
+        }
+
+        boolean regularStructure = !request.getPossibleHands().isEmpty() && !sevenPairs && !thirteenOrphans;
+
+        HandService.countFu(request);
+
+        if (!request.getOpenHand()) {
+            YakuService.checkForRiichiAndTsumo(request);
+            YakuService.checkForPinfu(request);
+        }
+
+        YakuService.checkForFlagsYaku(request);
+        YakuService.checkForDora(request);
+        YakuService.checkForFlushYaku(request);
+        YakuService.checkForAllSimples(request);
+
+        if (regularStructure) {
+            YakuService.checkForMixedTriples(request);
+        }
+
+
+
+
+
     }
 }

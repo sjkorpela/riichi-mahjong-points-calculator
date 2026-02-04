@@ -70,4 +70,16 @@ public class Sequence implements Set {
     public boolean sameSuit(Sequence that) {
         return this.suit == that.getSuit();
     }
+
+    @Override
+    public String toString() {
+        return "(" + getTiles()[0] + ", " + getTiles()[1] + ", " + getTiles()[2] + ")";
+    }
+
+    public int getIndexOf(Tile tile) {
+        if (getTiles()[0] == tile) { return getIndexes()[0]; }
+        if (getTiles()[1] == tile) { return getIndexes()[1]; }
+        if (getTiles()[2] == tile) { return getIndexes()[2]; }
+        return -1;
+    }
 }

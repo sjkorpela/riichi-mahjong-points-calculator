@@ -28,7 +28,7 @@ public class PointsController {
         try {
             ValidationService.validatePointsRequest(request);
             request.initializeOtherFields();
-            PointsService.getYaku(request);
+            PointsService.calculatePoints(request);
             PointsResponse response = new PointsResponse(request);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (IllegalArgumentException e) {

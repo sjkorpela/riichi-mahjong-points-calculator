@@ -190,6 +190,8 @@ public enum Tile {
     public boolean isDoraIndicatorOf(Tile that) {
         if (that == null) { throw new IllegalArgumentException("Param tile can't be null."); }
 
+        if (this.getSuit() != that.getSuit()) { return false; }
+
         switch (this.getSuit()) {
             case Wind:
                 switch (Wind.valueOf(this.toString())) {
@@ -207,7 +209,6 @@ public enum Tile {
             default:
                 boolean isNext = this.isNext(that);
                 boolean loopsAround = this.getValue() == 9 && that.getValue() == 1 && this.getSuit() == that.getSuit();
-                System.out.println(this.getReadableName() + ", " + that.getReadableName() + ", " + isNext + ", " + loopsAround);
                 return isNext || loopsAround;
         }
     }
