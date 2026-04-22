@@ -21,7 +21,7 @@ RUN npm run build
 
 
 # ── Stage 3: Runtime ──────────────────────────────────────────────────────────
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:21-jre-jammy
 
 # Install Node.js
 RUN apt-get update && apt-get install -y --no-install-recommends curl \
