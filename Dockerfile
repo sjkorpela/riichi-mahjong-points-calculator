@@ -45,5 +45,6 @@ COPY start.sh .
 RUN chmod +x start.sh
 
 ENV HOSTNAME=0.0.0.0
+
 EXPOSE ${PORT:-3000}
 ENTRYPOINT ["./start.sh"]
