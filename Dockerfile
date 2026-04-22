@@ -1,4 +1,5 @@
 # ── Stage 1: Build backend ────────────────────────────────────────────────────
+ENV HOSTNAME=0.0.0.0
 FROM maven:3.9-eclipse-temurin-21 AS backend-build
 
 WORKDIR /build
