@@ -40,7 +40,7 @@ export class Fetcher {
     public static async getYaku(request: FetchYakuProps): Promise<YakuResponse> {
         console.log("Fetching with: ", request)
         try {
-            const raw = await fetch('http://localhost:8080/points', {
+            const raw = await fetch('api/points', {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',

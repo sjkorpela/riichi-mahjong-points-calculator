@@ -2,8 +2,9 @@
 set -e
 
 echo "Starting backend..."
-java -jar /app/backend/app.jar &
+cd /app/backend && java -jar app.jar &
 BACKEND_PID=$!
+cd /app
 
 echo "Starting frontend..."
 cd /app/frontend && HOSTNAME=0.0.0.0 PORT=${PORT:-3000} node server.js &
