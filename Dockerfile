@@ -1,5 +1,3 @@
-ENV HOSTNAME=0.0.0.0
-
 # ── Stage 1: Build backend ────────────────────────────────────────────────────
 FROM maven:3.9-eclipse-temurin-21 AS backend-build
 
@@ -45,5 +43,6 @@ COPY --from=frontend-build /build/public ./frontend/public
 COPY start.sh .
 RUN chmod +x start.sh
 
+ENV HOSTNAME=0.0.0.0
 EXPOSE ${PORT:-3000}
 ENTRYPOINT ["./start.sh"]
