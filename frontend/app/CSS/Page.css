@@ -1,0 +1,25 @@
+.my-box {
+    padding: 12px;
+    background-color: var(--color-green-600);
+    border-radius: var(--radius-xl)
+}
+
+.box-title {
+    font-size: var(--text-2xl);
+    line-height: var(--tw-leading, var(--text-2xl--line-height));
+    color: white;
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+}
+
+.selected {
+    outline: white solid 4px;
+}
+
+.selectable {
+    outline: white dashed 0px;
+}
+
+.selectable:hover {
+    outline-width: 4px;
+}

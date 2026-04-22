@@ -48,15 +48,17 @@ public class PointsRequest {
     private Boolean openHand;
     private HashMap<String, Boolean> flags;
 
-    private Integer fu;
-    private ArrayList<Yaku> yaku;
+    private List<Yaku> yaku;
+    private List<ResponseYaku> responseYaku;
     private Boolean yakumanAchieved;
     private Suit flushSuit;
     private List<PossibleHand> possibleHands;
+    private Integer fu;
 
     public void initializeOtherFields() {
         fu = 0;
         yaku = new ArrayList<Yaku>();
+        responseYaku = new ArrayList<ResponseYaku>();
         yakumanAchieved = false;
         flushSuit = null;
         possibleHands = new ArrayList<>();
@@ -84,5 +86,14 @@ public class PointsRequest {
         HashMap<Tile, Integer> temp =  new HashMap<Tile, Integer>(hand);
         temp.merge(winningTile, 1, Integer::sum);
         return temp;
+    }
+
+    public boolean hasYaku(Yaku yaku) {
+        for (ResponseYaku responseYaku : this.responseYaku) {
+            if (responseYaku.getYaku() == yaku) {
+                return true;
+            }
+        }
+        return false;
     }
 }

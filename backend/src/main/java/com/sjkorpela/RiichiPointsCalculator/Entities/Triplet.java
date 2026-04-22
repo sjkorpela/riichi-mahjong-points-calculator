@@ -16,4 +16,9 @@ public class Triplet implements Set {
         this.tile = tile;
         this.indexes = new Integer[]{firstIndex, secondIndex, thirdIndex};
     }
+
+    @Override
+    public String toString() {
+        return "(" + getTile() + ", " + getTile() + ", " + getTile() + ")";
+    }
 }

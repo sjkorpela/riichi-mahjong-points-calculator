@@ -1,0 +1,310 @@
+{
+  "Riichi": {
+    "englishName": "",
+    "japaneseName": "Riichi",
+    "description": "TBD",
+    "closedHan": 1,
+    "openHan": 0
+  },
+  "Ippatsu": {
+    "englishName": "",
+    "japaneseName": "Ippatsu",
+    "description": "TBD",
+    "closedHan": 1,
+    "openHan": 0
+  },
+  "Tsumo": {
+    "englishName": "",
+    "japaneseName": "Tsumo",
+    "description": "Self-drawing your winning tile with a closed hand.",
+    "closedHan": 1,
+    "openHan": 0
+  },
+  "Pinfu": {
+    "englishName": "",
+    "japaneseName": "Pinfu",
+    "description": "TBD",
+    "closedHan": 1,
+    "openHan": 1
+  },
+  "AllSimples": {
+    "englishName": "All Simples",
+    "japaneseName": "Tanyao",
+    "description": "A hand with no terminals or honors.",
+    "closedHan": 1,
+    "openHan": 1
+  },
+  "PureDoubleSequence": {
+    "englishName": "Pure Double Sequence",
+    "japaneseName": "Iipeikou",
+    "description": "Two sequences of the same value and suit in a closed hand.",
+    "closedHan": 1,
+    "openHan": 0
+  },
+  "PrevalentWind": {
+    "englishName": "Prevalent Wind",
+    "japaneseName": "Yakuhai",
+    "description": "A triplet of the current round's Wind tile.",
+    "closedHan": 1,
+    "openHan": 1
+  },
+  "SeatWind": {
+    "englishName": "Seat Wind",
+    "japaneseName": "Yakuhai",
+    "description": "A triplet of the player's seat's Wind tile.",
+    "closedHan": 1,
+    "openHan": 1
+  },
+  "GreenDragon": {
+    "englishName": "Green Dragon",
+    "japaneseName": "Yakuhai",
+    "description": "A triplet of Green Dragon tiles.",
+    "closedHan": 1,
+    "openHan": 1
+  },
+  "RedDragon": {
+    "englishName": "Red Dragon",
+    "japaneseName": "Yakuhai",
+    "description": "A triplet of Red Dragon tiles.",
+    "closedHan": 1,
+    "openHan": 1
+  },
+  "WhiteDragon": {
+    "englishName": "White Dragon",
+    "japaneseName": "Yakuhai",
+    "description": "A triplet of White Dragon tiles.",
+    "closedHan": 1,
+    "openHan": 1
+  },
+  "AfterKan": {
+    "englishName": "After/Robbing a Kan",
+    "japaneseName": "Rinshan kaihou / Chankan",
+    "description": "Drawing your winning tile from the dead wall after declaring a kan, or calling Ron on an opponent upgrading an open triplet into a kan.",
+    "closedHan": 1,
+    "openHan": 1
+  },
+  "LastTile": {
+    "englishName": "Under the Sea/River",
+    "japaneseName": "Haitei raoyue / Houtei raoyui",
+    "description": "Drawing your winning tile as the last tile of the round, or calling Ron on the last discard of the round.",
+    "closedHan": 1,
+    "openHan": 1
+  },
+  "Dora": {
+    "englishName": "",
+    "japaneseName": "Dora",
+    "description": "Special tiles worth 1 han in hand. Indicated by Dora indicators.",
+    "closedHan": 1,
+    "openHan": 1
+  },
+  "AkaDora": {
+    "englishName": "",
+    "japaneseName": "Aka Dora",
+    "description": "Special red 5 tiles worth 1 han in hand.",
+    "closedHan": 1,
+    "openHan": 1
+  },
+  "DoubleRiichi": {
+    "englishName": "",
+    "japaneseName": "Double Riichi",
+    "description": "When a player calls Riichi on their first turn, and before any tile calls.",
+    "closedHan": 2,
+    "openHan": 0
+  },
+  "TripleTriplets": {
+    "englishName": "Triple Triplets",
+    "japaneseName": "Sanshoku doukou",
+    "description": "Three sequences of the same value.",
+    "closedHan": 2,
+    "openHan": 2
+  },
+  "ThreeQuads": {
+    "englishName": "Three Quads",
+    "japaneseName": "Sankantsu",
+    "description": "A hand with three kans.",
+    "closedHan": 2,
+    "openHan": 2
+  },
+  "AllTriplets": {
+    "englishName": "All Triplets",
+    "japaneseName": "Toitoi",
+    "description": "A hand with four triplets or quads and a pair.",
+    "closedHan": 2,
+    "openHan": 2
+  },
+  "ThreeConcealedTriplets": {
+    "englishName": "Three Concealed Triplets",
+    "japaneseName": "Sanankou",
+    "description": "A hand with three concealed triplets or quads. The hand itself may be open.",
+    "closedHan": 2,
+    "openHan": 2
+  },
+  "LittleThreeDragons": {
+    "englishName": "Little Three Dragons",
+    "japaneseName": "Shousangen",
+    "description": "A hand with two Dragon triplets or quads and a Dragon pair.",
+    "closedHan": 2,
+    "openHan": 2
+  },
+  "AllTerminalsAndHonors": {
+    "englishName": "All Terminals and Honors",
+    "japaneseName": "Honroutou",
+    "description": "A hand made entirely of terminal and honor tiles.",
+    "closedHan": 2,
+    "openHan": 2
+  },
+  "SevenPairs": {
+    "englishName": "Seven Pairs",
+    "japaneseName": "Chiitoitsu",
+    "description": "A hand made of seven pairs.",
+    "closedHan": 2,
+    "openHan": 0
+  },
+  "HalfOutsideHand": {
+    "englishName": "Half Outside Hand",
+    "japaneseName": "Chanta",
+    "description": "A hand with every set containing a terminal or honor.",
+    "closedHan": 2,
+    "openHan": 1
+  },
+  "PureStraight": {
+    "englishName": "Pure Straight",
+    "japaneseName": "Ittsuu",
+    "description": "Three sequences of values 1-2-3, 4-5-6, and 7-8-9 all of the same suit.",
+    "closedHan": 2,
+    "openHan": 1
+  },
+  "MixedTripleSequence": {
+    "englishName": "Mixed Triple Sequence",
+    "japaneseName": "Sanshoku",
+    "description": "Three sequences of the same value.",
+    "closedHan": 2,
+    "openHan": 1
+  },
+  "TwicePureDoubleSequence": {
+    "englishName": "Twice Pure Double Sequence",
+    "japaneseName": "Ryanpeikou",
+    "description": "Two sequences of the same value and suit in a closed hand, twice.",
+    "closedHan": 3,
+    "openHan": 0
+  },
+  "FullyOutsideHand": {
+    "englishName": "Fully Outside Hand",
+    "japaneseName": "Junchan",
+    "description": "A hand with every set containing a terminal.",
+    "closedHan": 3,
+    "openHan": 2
+  },
+  "HalfFlush": {
+    "englishName": "Half Flush",
+    "japaneseName": "Honitsu",
+    "description": "A hand with honors and all numbered tiles being of the same suit.",
+    "closedHan": 3,
+    "openHan": 2
+  },
+  "FullFlush": {
+    "englishName": "Full Flush",
+    "japaneseName": "Chinitsu",
+    "description": "A hand of only numbered tiles of the same suit.",
+    "closedHan": 6,
+    "openHan": 5
+  },
+  "BlessedHand": {
+    "englishName": "Blessing of Heaven/Earth",
+    "japaneseName": "Tenhou / Chiihou",
+    "description": "Starting the game with a complete hand, or drawing a winning tile as your first draw, and before any tile calls.",
+    "closedHan": 13,
+    "openHan": 13
+  },
+  "BigThreeDragons": {
+    "englishName": "Big Three Dragons",
+    "japaneseName": "Daisangen",
+    "description": "A hand with triplets or quads of all three Dragons.",
+    "closedHan": 13,
+    "openHan": 13
+  },
+  "FourLittleWinds": {
+    "englishName": "Four Little Winds",
+    "japaneseName": "Shousuushii",
+    "description": "A hand with three triplets or quads of Winds, and a Wind pair.",
+    "closedHan": 13,
+    "openHan": 13
+  },
+  "FourConcealedTriplets": {
+    "englishName": "Four Concealed Triplets",
+    "japaneseName": "Suuankou",
+    "description": "A hand with four concealed triplets.",
+    "closedHan": 13,
+    "openHan": 0
+  },
+  "FourQuads": {
+    "englishName": "Four Quads",
+    "japaneseName": "Suukantsu",
+    "description": "A hand with four kans.",
+    "closedHan": 13,
+    "openHan": 13
+  },
+  "AllHonors": {
+    "englishName": "All Honors",
+    "japaneseName": "Tsuuiisou",
+    "description": "A hand made entirely of honor tiles.",
+    "closedHan": 13,
+    "openHan": 13
+  },
+  "AllGreen": {
+    "englishName": "All Green",
+    "japaneseName": "Ryuuiisou",
+    "description": "A hand made of entirely fully green tiles. Fully green tiles are 2, 3, 4, 6, and 8 of Sou, and the Green Dragon.",
+    "closedHan": 13,
+    "openHan": 13
+  },
+  "AllTerminals": {
+    "englishName": "All Terminals",
+    "japaneseName": "Chinroutou",
+    "description": "A hand made entirely of terminal tiles.",
+    "closedHan": 13,
+    "openHan": 13
+  },
+  "ThirteenOrphans": {
+    "englishName": "Thirteen Orphans",
+    "japaneseName": "Kokushi",
+    "description": "A hand with one of every terminal and honor, of which one makes a pair.",
+    "closedHan": 13,
+    "openHan": 0
+  },
+  "NineGates": {
+    "englishName": "Nine Gates",
+    "japaneseName": "Chuuren poutou",
+    "description": "A hand made of three 1s, three 9s, and every simple numbered tile, all of the same suit.",
+    "closedHan": 13,
+    "openHan": 0
+  },
+  "SingleWaitFourConcealedTriplets": {
+    "englishName": "Single-Wait Four Concealed Triplets",
+    "japaneseName": "Suuankou tanki",
+    "description": "A hand with four concealed triplets, where the only wait is for the pair.",
+    "closedHan": 26,
+    "openHan": 0
+  },
+  "ThirteenWaitThirteenOrphans": {
+    "englishName": "Thirteen-Wait Thirteen Orphans",
+    "japaneseName": "Kokushi juusanmen",
+    "description": "A hand with one of every terminal and honor, of which one makes a pair, where the wait is any of the terminals or honors.",
+    "closedHan": 26,
+    "openHan": 0
+  },
+  "TrueNineGates": {
+    "englishName": "True Nine Gates",
+    "japaneseName": "Junsei chuuren poutou",
+    "description": "A hand made of three 1s, three 9s, and every simple numbered tile, all of the same suit, where the wait is any of the nine tiles of the suit.",
+    "closedHan": 26,
+    "openHan": 0
+  },
+  "FourBigWinds": {
+    "englishName": "Four Big Winds",
+    "japaneseName": "Daisuushii",
+    "description": "A hand with triplets or quads of all four Winds.",
+    "closedHan": 26,
+    "openHan": 26
+  }
+}

@@ -1,5 +1,8 @@
 package com.sjkorpela.RiichiPointsCalculator.Enums;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum Yaku {
     // 1 Han
     Riichi,
@@ -15,6 +18,8 @@ public enum Yaku {
     WhiteDragon,
     AfterKan,
     LastTile,
+    Dora,
+    AkaDora,
 
 
     // 2 Han
@@ -47,7 +52,7 @@ public enum Yaku {
     FourLittleWinds,
     FourConcealedTriplets,
     FourQuads,
-    ALlHonors,
+    AllHonors,
     AllGreen,
     AllTerminals,
     ThirteenOrphans,
@@ -59,4 +64,26 @@ public enum Yaku {
     ThirteenWaitThirteenOrphans,
     TrueNineGates,
     FourBigWinds
+    ;
+
+    public static List<Yaku> getYakuman() {
+        return Arrays.asList(
+                BlessedHand,
+                BigThreeDragons,
+                FourLittleWinds,
+                FourConcealedTriplets,
+                FourQuads,
+                AllHonors,
+                AllGreen,
+                AllTerminals,
+                ThirteenOrphans,
+                NineGates,
+                SingleWaitFourConcealedTriplets,
+                ThirteenWaitThirteenOrphans,
+                TrueNineGates,
+                FourBigWinds
+        );
+    }
+
+
 }

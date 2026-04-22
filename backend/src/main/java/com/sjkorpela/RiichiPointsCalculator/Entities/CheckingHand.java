@@ -3,6 +3,7 @@ package com.sjkorpela.RiichiPointsCalculator.Entities;
 import com.sjkorpela.RiichiPointsCalculator.Enums.Tile;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.util.ObjectUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +16,17 @@ public class CheckingHand {
     private List<Triplet> triplets;
     private List<Sequence> sequences;
     private Pair pair = null;
-    private boolean ready = false;
+    private int fu;
+    private boolean openHand;
+    private int winningIndex;
 
-    public CheckingHand(List<Tile> tiles) {
+    public CheckingHand(List<Tile> tiles, boolean openHand) {
+        if (tiles == null || tiles.size() != 14) { throw new IllegalArgumentException("New CheckingHand's tiles must be not null and 14 tiles."); }
         this.tiles = tiles;
         this.spentTiles = new ArrayList<Integer>();
         this.triplets = new ArrayList<Triplet>();
         this.sequences = new ArrayList<Sequence>();
+        this.openHand = openHand;
     }
 
     public CheckingHand(CheckingHand old) {
@@ -38,7 +43,9 @@ public class CheckingHand {
         this.triplets = new ArrayList<Triplet>(old.triplets);
         this.sequences = new ArrayList<Sequence>(old.sequences);
         this.pair = old.pair;
-        this.ready = old.ready;
+        this.openHand = old.openHand;
+        this.fu = old.fu;
+        this.winningIndex = old.winningIndex;
     }
 
     public Integer getFirstUnspentIndex() {
@@ -47,18 +54,7 @@ public class CheckingHand {
                 return i;
             }
         }
-
         return null;
-    }
-
-    public List<Tile> getRemainingTiles() {
-        List<Tile> left = new ArrayList<>();
-        for (int i = 0; i < tiles.size(); i++) {
-            if (!spentTiles.contains(i)) {
-                left.add(tiles.get(i));
-            }
-        }
-        return left;
     }
 
     public void setPair(Tile tile, Integer firstIndex, Integer secondIndex) {
@@ -79,20 +75,5 @@ public class CheckingHand {
         spentTiles.add(secondIndex);
         spentTiles.add(thirdIndex);
         sequences.add(new Sequence(firstTile, secondTile, thirdTile, firstIndex, secondIndex, thirdIndex));
-    }
-
-    @Override
-    public String toString() {
-        String seqStr = "";
-        String triStr = "";
-        String paiStr = "";
-        for (Sequence s : sequences) {
-            seqStr += "[" + s.getTiles()[0] + " " + s.getTiles()[1] + " " + s.getTiles()[2] + "]";
-        }
-        for (Triplet t : triplets) {
-            triStr += "[" + t.getTile() + " " + t.getTile() + " " +t.getTile() + "]";
-        }
-        paiStr = pair == null ? "" : "[" + pair.getTile() + " " + pair.getTile() + "]";
-        return "{ " + seqStr + triStr + paiStr + ", " + spentTiles.size() + "/" + tiles.size() + " }";
     }
 }

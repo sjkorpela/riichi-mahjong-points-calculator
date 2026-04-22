@@ -1,6 +1,5 @@
 package com.sjkorpela.RiichiPointsCalculator.Entities;
 
-import com.sjkorpela.RiichiPointsCalculator.Enums.Yaku;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,15 +10,21 @@ import java.util.List;
 @Setter
 public class PossibleHand {
     private List<Set> sets;
-    private List<Yaku> yaku;
+    private List<ResponseYaku> responseYaku;
+    private Integer fu;
+    private boolean openHand;
+    private int winningIndex;
 
     public PossibleHand(CheckingHand hand) {
         this.sets = new ArrayList<>();
         this.sets.addAll(hand.getSequences());
         this.sets.addAll(hand.getTriplets());
         this.sets.add(hand.getPair());
+        this.fu = null;
+        this.openHand = hand.isOpenHand();
+        this.winningIndex = hand.getWinningIndex();
 
-        this.yaku = new ArrayList<>();
+        this.responseYaku = new ArrayList<>();
     }
 
     public List<Sequence> getSequences() {
@@ -49,5 +54,22 @@ public class PossibleHand {
             }
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder string = new StringBuilder();
+
+        for (Sequence sequence : getSequences()) {
+            string.append(sequence.toString());
+        }
+        for (Triplet triplet : getTriplets()) {
+            string.append(triplet.toString());
+        }
+        string.append(getPair().toString());
+        string.append(", Fu: ").append(fu);
+        string.append(", WinIndex: ").append(winningIndex);
+
+        return string.toString();
     }
 }
