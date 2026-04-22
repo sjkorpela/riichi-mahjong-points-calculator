@@ -6,7 +6,7 @@ java -jar /app/backend/app.jar &
 BACKEND_PID=$!
 
 echo "Starting frontend..."
-cd /app/frontend && node server.js &
+cd /app/frontend && HOSTNAME=0.0.0.0 PORT=${PORT:-3000} node server.js &
 FRONTEND_PID=$!
 
 wait -n $BACKEND_PID $FRONTEND_PID
