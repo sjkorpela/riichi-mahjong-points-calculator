@@ -1,0 +1,8 @@
+FROM node:22-alpine
+WORKDIR /app
+COPY .next/standalone ./
+COPY .next/static ./.next/static
+COPY public ./public
+ENV HOSTNAME=0.0.0.0
+EXPOSE 3000
+ENTRYPOINT ["node", "server.js"]
