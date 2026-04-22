@@ -56,12 +56,14 @@ export class Fetcher {
             console.log("Error: ", error);
             if (error instanceof SyntaxError) {
                 return {
+                    dealer: false, fu: 0, han: 0, score: 0,
                     status: 400,
                     yaku: [],
-                    openHand: false,
+                    openHand: false
                 }
             } else if (error instanceof TypeError) {
                 return {
+                    dealer: false, fu: 0, han: 0, score: 0,
                     status: 500,
                     yaku: [],
                     openHand: false,
