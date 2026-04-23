@@ -24,18 +24,11 @@ public class PointsController {
      * @return Response with {@link com.sjkorpela.RiichiPointsCalculator.Entities.PointsResponse} or error message.
      */
     @PostMapping("/points")
-    public ResponseEntity<?> CalculatePoints(@RequestBody PointsRequest request) {
-        try {
-            ValidationService.validatePointsRequest(request);
-            request.initializeOtherFields();
-            PointsService.calculatePoints(request);
-            PointsResponse response = new PointsResponse(request);
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(e.getMessage());
-        }
+    public PointsResponse CalculatePoints(@RequestBody PointsRequest request) {
+          ValidationService.validatePointsRequest(request);
+          request.initializeOtherFields();
+          PointsService.getYaku(request);
+          return new PointsResponse(request);
     }
 
 }
