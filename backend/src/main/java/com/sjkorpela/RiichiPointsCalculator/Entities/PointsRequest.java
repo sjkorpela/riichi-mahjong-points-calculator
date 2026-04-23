@@ -5,6 +5,7 @@ import com.sjkorpela.RiichiPointsCalculator.Enums.Tile;
 import com.sjkorpela.RiichiPointsCalculator.Enums.Wind;
 import com.sjkorpela.RiichiPointsCalculator.Enums.Yaku;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 import java.util.*;
@@ -39,14 +40,14 @@ import java.util.*;
 @Getter
 @Setter
 public class PointsRequest {
-    private HashMap<Tile, Integer> hand;
-    private Tile winningTile;
-    private Wind roundWind;
-    private Wind seatWind;
-    private Tile[] dora;
-    private Boolean tsumo;
-    private Boolean openHand;
-    private HashMap<String, Boolean> flags;
+    @NonNull private HashMap<Tile, Integer> hand;
+    @NonNull private Tile winningTile;
+    @NonNull private Wind roundWind;
+    @NonNull private Wind seatWind;
+    @NonNull private Tile[] dora;
+    @NonNull private Boolean tsumo;
+    @NonNull private Boolean openHand;
+    @NonNull private HashMap<String, Boolean> flags;
 
     private List<Yaku> yaku;
     private List<ResponseYaku> responseYaku;
