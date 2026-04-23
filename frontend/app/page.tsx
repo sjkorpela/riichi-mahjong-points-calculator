@@ -141,7 +141,6 @@ export default function Home() {
 
         try {
             const result: YakuResponse = await Fetcher.getYaku(calculationInfo);
-            console.log("Result: ", result);
             setResponse(result);
         } catch {
             setResponse(null);
