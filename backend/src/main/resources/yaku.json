@@ -2,14 +2,14 @@
   "Riichi": {
     "englishName": "",
     "japaneseName": "Riichi",
-    "description": "TBD",
+    "description": "When a player is in tenpai and bets 1000 points by calling Riichi.",
     "closedHan": 1,
     "openHan": 0
   },
   "Ippatsu": {
     "englishName": "",
     "japaneseName": "Ippatsu",
-    "description": "TBD",
+    "description": "When a player that has called Riichi wins before or with the their next tile draw, and no other player has made stealing calls during that turn.",
     "closedHan": 1,
     "openHan": 0
   },
@@ -23,7 +23,7 @@
   "Pinfu": {
     "englishName": "",
     "japaneseName": "Pinfu",
-    "description": "TBD",
+    "description": "When a hand scores no fu.",
     "closedHan": 1,
     "openHan": 1
   },
